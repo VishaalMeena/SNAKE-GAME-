@@ -38,7 +38,7 @@ for _ in range(4):  # draw square
 is_game_on = True
 while is_game_on:
     screen.update()
-    time.sleep(0.1)
+    time.sleep(0.09)
     #detecting collision b/w food and snake
     if snake.head.distance(food) <= 15:
         food.refresh()
@@ -46,8 +46,8 @@ while is_game_on:
         snake.extend()
     #detecting if snake has hit the wall or not
     if (snake.head.xcor() > 280 or snake.head.xcor() < -280 or snake.head.ycor() > 250 or snake.head.ycor() < -310):
-        is_game_on = False
-        scoreboard.game_over()
+        scoreboard.reset()
+        snake.reset()
 
     snake.move()
 
@@ -55,8 +55,8 @@ while is_game_on:
     
     for segment in snake.segments[1:]:
         if snake.head.distance(segment) < 10:
-            is_game_on == False
-            scoreboard.game_over()
+            scoreboard.reset()
+            snake.reset()
 
 
 screen.exitonclick()
